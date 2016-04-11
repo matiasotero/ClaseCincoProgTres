@@ -16,7 +16,7 @@
 	<body>
     <div class="CajaUno animated bounceInDown">
 
-            <form action="gestion.php" method="post" enctype="multipart/fontdata"><!--Pasa el archivo la propiedad enctype="multipart/fontdata" en foto, no el nombre -->
+            <form action="gestion.php" method="post" enctype="multipart/form-data"><!--Pasa el archivo la propiedad enctype="multipart/fontdata" en foto, no el nombre -->
             <input type="text" name="patente"  id="autocomplete"/>
             <br>
             <input type="submit" class="MiBotonUTN" value="ingreso"  name="estacionar" />
