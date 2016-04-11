@@ -13,8 +13,10 @@
 	3- guardar todo lo facturado en facturado.txt*/
 
 //var_dump($_POST["estacionar"]);
-	var_dump($_FILES);
-	die();
+var_dump($_FILES["fotoAutito"]["name"]);
+$archivoDestino="Fotitos/".$_FILES["fotoAutito"]["name"];
+var_dump($archivoDestino);
+die();
 $accion = $_POST["estacionar"];
 $patente = $_POST["patente"];
 $ahora=date("y-m-d h:i:s");
