@@ -14,8 +14,10 @@
 
 //var_dump($_POST["estacionar"]);
 var_dump($_FILES["fotoAutito"]["name"]);
+echo "<br>";
 $archivoDestino="Fotitos/".$_FILES["fotoAutito"]["name"];
 var_dump($archivoDestino);
+move_uploaded_file($_FILES["fotoAutito"]["tmp_name"], $archivoDestino);//tmp_name te devuelve el lugar donde se guarda en el directorio de archivo temporales del servidor
 die();
 $accion = $_POST["estacionar"];
 $patente = $_POST["patente"];
