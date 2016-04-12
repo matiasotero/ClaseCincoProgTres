@@ -13,12 +13,16 @@
 	3- guardar todo lo facturado en facturado.txt*/
 
 //var_dump($_POST["estacionar"]);
-var_dump($_FILES["fotoAutito"]["name"]);
+//var_dump($_FILES["fotoAutito"]["name"]);
 echo "<br>";
-$archivoDestino="Fotitos/".$_FILES["fotoAutito"]["name"];
-var_dump($archivoDestino);
+//$archivoDestino="Fotitos/".$_FILES["fotoAutito"]["name"];
+$extAnterior=explode(".", $_FILES["fotoAutito"]["name"]);
+//var_dump($extAnterior[1]);
+$archivoDestino="Fotitos/".$_POST["patente"].".".$extAnterior[1];
+echo "<br>";
+//var_dump($archivoDestino);
 move_uploaded_file($_FILES["fotoAutito"]["tmp_name"], $archivoDestino);//tmp_name te devuelve el lugar donde se guarda en el directorio de archivo temporales del servidor
-die();
+//die();
 $accion = $_POST["estacionar"];
 $patente = $_POST["patente"];
 $ahora=date("y-m-d h:i:s");
@@ -28,7 +32,10 @@ if ($accion == "ingreso")
 {	
 	echo "Se guardo la patente ".$patente;
 	$archivo=fopen("ticket.txt", "a");
-	fwrite($archivo, $patente."[".$ahora."\n");//el corchete es separador//si el escape "\n" no funciona, probar PHP_EOL
+	fwrite($archivo, $patente."[".$ahora."["."\n");//el corchete es separador//si el escape "\n" no funciona, probar PHP_EOL
+	//echo "<br>";
+	//echo var_dump($archivoDestino[1]);
+	//echo "<br>";
 	fclose($archivo);
 }
 else
@@ -74,6 +81,25 @@ else
 			echo "No esta el auto";
 }
 
+$archivo=fopen("ticket.txt", "r");
+
+
+echo "<table border=1>";
+echo "<th>Patente</th><th>Fecha</th><th>Foto</th>";
+
+while (!feof($archivo)) 
+{	
+	echo "<tr>";	
+	$renglon=fgets($archivo);
+	$auto=explode("[", $renglon);
+	if(trim($reglon))//trim() saca todos los espacios
+	{
+		echo "<br>"."<td>".$auto[0]."</td>"."<td>".$auto[1]."</td>"."<td>"."<img src= $auto[2] width=200px>"."</td>"."<br>";
+		echo "</tr>";
+	}
+}
+
+echo "</table>";
 
 ?>
 <br>
